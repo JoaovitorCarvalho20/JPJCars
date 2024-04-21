@@ -7,9 +7,6 @@ const express = require("express");
 // Importa o módulo cors, que é um middleware para permitir requisições de diferentes origens
 const cors = require("cors");
 
-// Importa o módulo body-parser, que é um middleware para analisar corpos de requisição em diferentes formatos
-const bodyParser = require("body-parser");
-
 // Importa as rotas definidas no arquivo routes.js
 const routes = require("./routes");
 
@@ -19,8 +16,9 @@ const server = express();
 // Configura o servidor para aceitar requisições de diferentes origens
 server.use(cors());
 
-// Configura o servidor para analisar corpos de requisição codificados em URL
-server.use(bodyParser.urlencoded({ extended: false }));
+// Configura o servidor para analisar corpos de requisição codificados em URL e JSON
+server.use(express.urlencoded({ extended: true })); // true permite que objetos ricos e arrays sejam codificados na URL-encoded form, compatível com bibliotecas como jQuery
+server.use(express.json()); // Para parsear requisições JSON
 
 // Configura o servidor para usar as rotas definidas no arquivo routes.js
 server.use('/api', routes);
