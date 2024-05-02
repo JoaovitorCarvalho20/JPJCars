@@ -20,5 +20,10 @@ router.delete('/carro/:id', CarroController.excluir);
 router.put('/carro/:id', CarroController.alterar);
 module.exports = router;
 
+const UsuarioController = require('./controller/UsuarioController');
+// Rotas para usuário
+router.post('/usuarios/registrar', UsuarioController.registrar);
+router.post('/usuarios/login', UsuarioController.autenticar);
+
 
 
